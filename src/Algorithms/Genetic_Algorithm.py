@@ -121,8 +121,8 @@ class GeneticAlgorithm(OptimizationAlgorithm):
                 self._mutate(child1)
                 self._mutate(child2)
 
-                new_population.extend(child1)
-                new_population.extend(child2)
+                new_population.append(child1)
+                new_population.append(child2)
 
             # Zastąpienie starej populacji nową:
             population = new_population[:self._pop_size]        # Ucięcie na wypadek gdyby rozmiar populacji był nieparzysty
