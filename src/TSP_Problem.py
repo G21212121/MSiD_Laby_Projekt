@@ -20,15 +20,14 @@ import random
 class TSPProblem:
 
     # Konstruktor:
-    def __init__(self, num_cities: int):
+    def __init__(self, num_cities: int, min_x: float=0.0, max_x: float=100.0, min_y: float=0.0, max_y: float=100.0):
         self._num_cities = num_cities
 
-        # Generowanie losowych współrzędnych (x, y) dla miast:
-        max_x = 100.0
-        min_x = 0.0
-
-        max_y = 100.0
-        min_y = 0.0
+        # Minimalne i maksymalne współrzędne dla miast:
+        self._min_x = min_x
+        self._max_x = max_x
+        self._min_y = min_y
+        self._max_y = max_y
 
         self._city_coords: list[tuple[float, float]] = [
             (random.uniform(min_x, max_x), random.uniform(min_y, max_y))
