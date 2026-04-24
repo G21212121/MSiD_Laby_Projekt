@@ -30,7 +30,7 @@ class TSPProblem:
         self._max_y = max_y
 
         self._city_coords: list[tuple[float, float]] = [
-            (random.uniform(min_x, max_x), random.uniform(min_y, max_y))
+            (random.uniform(self._min_x, self._max_x), random.uniform(self._min_y, self._max_y))
             for _ in range(num_cities)
         ]
 
