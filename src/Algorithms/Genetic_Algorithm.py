@@ -25,7 +25,7 @@ class GeneticAlgorithm(OptimizationAlgorithm):
         self._selection_size = selection_size
 
     # Stworzenie losowego osobnika (permutację miast):
-    def _create_individual(self) -> tuple[int]:
+    def _create_individual(self) -> list[int]:
         route = list(range(self._problem.num_cities))
         random.shuffle(route)
         return route
