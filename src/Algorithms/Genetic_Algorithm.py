@@ -64,12 +64,15 @@ class GeneticAlgorithm(OptimizationAlgorithm):
             child[start:end+1] = p1[start:end+1]
 
             # Uzupełnienie z drugiego rodzica:
-            p2_idx = 0
-            for i in range(size):
-                if child[i] == -1:
-                    while p2[p2_idx] in child:
-                        p2_idx += 1
-                    child[i] = p2[p2_idx]
+            current_p2_idx = (end + 1) % size
+            current_child_idx = (end + 1) % size
+
+            while -1 in child:
+                if p2[current_p2_idx] not in child:
+                    child[current_child_idx] = p2[current_p2_idx]
+                    current_child_idx = (current_child_idx + 1) % size
+
+                current_p2_idx = (current_p2_idx + 1) % size
 
             return child
 
@@ -103,14 +106,16 @@ class GeneticAlgorithm(OptimizationAlgorithm):
 
             # Aktualizacja globalnego najlepszego rozwiązania:
             current_best_fitness = min(fitnesses)
+            best_idx = fitnesses.index(current_best_fitness)
+            current_best_route = population[best_idx]
+
             if current_best_fitness < global_best_fitness:
                 global_best_fitness = current_best_fitness
-                best_idx = fitnesses.index(current_best_fitness)
-                global_best_route = population[best_idx].copy()
+                global_best_route = current_best_route.copy()
 
 
             # Nowa populacja:
-            new_population = []
+            new_population = [current_best_route.copy()]        # Elitaryzm - w nowej populacji znajduje się najlepszy osobnik z poprzedniej populacji
 
             for _ in range(0, self._pop_size, 2):
                 p1 = self._selection(population, fitnesses)
