@@ -99,14 +99,14 @@ class SimulationRunner:
 # Funkcja główna - uruchamia powyższe funkcję i wyświetla:
 def main():
     # 1. Inicjalizacja problemu:
-    num_cities = 20
+    num_cities = 100
 
     problem = TSPProblem(
         num_cities=num_cities,                      # Liczba miast
         min_x=0.0,                          # Zakres współrzędnych:
-        max_x=100.0,
+        max_x=500.0,
         min_y=0.0,
-        max_y=100.0,
+        max_y=500.0,
     )
 
     print(f"Problem komiwojazera (TSP) dla {num_cities} miast.\n\n")
@@ -128,8 +128,8 @@ def main():
         problem=problem,
         pop_size=100,
         mutation_rate=0.2,
-        generations=200,
-        selection_size=2
+        generations=250,
+        selection_size=5
     )
 
     # c) Ant Colony Optimization:
