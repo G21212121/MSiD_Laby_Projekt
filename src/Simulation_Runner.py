@@ -118,39 +118,39 @@ def main():
     # a) Simulated Annealing:
     sa_solver = SimulatedAnnealing(
         problem=problem,
-        initial_temp=1000.0,
-        cooling_rate=0.99,
-        min_temp=0.01
+        initial_temp=10000.0,
+        cooling_rate=0.9999,
+        min_temp=0.001
     )
 
     # b) Genetic Algorithm:
     ga_solver = GeneticAlgorithm(
         problem=problem,
-        pop_size=100,
+        pop_size=150,
         mutation_rate=0.2,
-        generations=250,
+        generations=300,
         selection_size=5
     )
 
     # c) Ant Colony Optimization:
     aco_solver = AntColonyOptimization(
         problem=problem,
-        num_ants=20,
+        num_ants=25,
         evaporation_rate=0.1,
         alpha=1.0,
-        beta=2.0,
+        beta=2.5,
         iterations=100
     )
 
     # d) Bees Algorithm:
     ba_solver = BeesAlgorithm(
         problem=problem,
-        num_scouts=30,
-        num_best_sites=10,
-        num_elite_sites=3,
-        elite_foragers=10,
-        best_foragers=5,
-        iterations=100,
+        num_scouts=50,
+        num_best_sites=15,
+        num_elite_sites=5,
+        elite_foragers=30,
+        best_foragers=15,
+        iterations=500,
         patch_size=1
     )
 
@@ -159,7 +159,7 @@ def main():
 
 
     # 3. Konfiguracją i uruchomienie Runner'a:
-    n = 10          # Liczbia uruchomień algorytmów
+    n = 3          # Liczbia uruchomień algorytmów
 
     runner = SimulationRunner(algorithms=algorithms_list, num_runs=n)
 
