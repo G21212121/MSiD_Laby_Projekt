@@ -16,6 +16,9 @@ import time
 from TSP_Problem import TSPProblem
 from Algorithms.Genetic_Algorithm import GeneticAlgorithm
 from src.Optimization_Algorithm import OptimizationAlgorithm
+from Algorithms.Simulated_Annealing import SimulatedAnnealing
+from Algorithms.Bees_Algorithm import BeesAlgorithm
+from Algorithms.Ant_Colony_Optimization import AntColonyOptimization
 
 
 # Klasa zarządzająca eksperymentami i uruchamianiem algorytmów:
@@ -113,7 +116,12 @@ def main():
     # 2. Tworzenie instacji algorytmów metaheurystycznych:
 
     # a) Simulated Annealing:
-
+    sa_solver = SimulatedAnnealing(
+        problem=problem,
+        initial_temp=1000.0,
+        cooling_rate=0.99,
+        min_temp=0.01
+    )
 
     # b) Genetic Algorithm:
     ga_solver = GeneticAlgorithm(
@@ -125,14 +133,29 @@ def main():
     )
 
     # c) Ant Colony Optimization:
-
+    aco_solver = AntColonyOptimization(
+        problem=problem,
+        num_ants=20,
+        evaporation_rate=0.1,
+        alpha=1.0,
+        beta=2.0,
+        iterations=100
+    )
 
     # d) Bees Algorithm:
-
+    ba_solver = BeesAlgorithm(
+        problem=problem,
+        num_scouts=30,
+        num_best_sites=10,
+        num_elite_sites=3,
+        elite_foragers=10,
+        best_foragers=5,
+        iterations=100,
+        patch_size=1
+    )
 
     # Lista algorytmów:
-    algorithms_list = [ga_solver]
-
+    algorithms_list = [ga_solver, sa_solver, aco_solver, ba_solver]
 
 
     # 3. Konfiguracją i uruchomienie Runner'a:
